@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>长凳问答库 · 长凳投资学番外｜西红精算</title>
+<style>
+:root{--paper:#f5f1e6;--ink:#2b2a26;--red:#b53d2e;--amber:#bb8a1f;--teal:#2f6b5a;--line:#e0dbcd;--ink2:#5f5e5a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#efe9db;font-family:'PingFang SC','Microsoft YaHei','Hiragino Sans GB',sans-serif;color:var(--ink);line-height:1.85;}
+.wrap{max-width:860px;margin:0 auto;padding:0 14px 48px;}
+header{background:#13211c;border-radius:0 0 18px 18px;padding:34px 20px 26px;text-align:center;}
+header .kicker{font-size:12px;letter-spacing:4px;color:#8fb4a5;margin-bottom:8px;}
+header h1{font-family:'Noto Serif SC','Songti SC',serif;font-size:28px;color:#fff;letter-spacing:3px;}
+header .sub{font-size:13px;color:#c8d4c9;margin-top:8px;}
+header .tag{display:inline-block;margin-top:14px;padding:4px 14px;border:1px solid rgba(255,255,255,.25);border-radius:20px;font-size:12px;color:#bb8a1f;}
+.searchbox{background:var(--paper);border-radius:14px;padding:16px 16px 14px;margin:18px 0 8px;box-shadow:0 2px 10px rgba(43,42,38,.08);}
+.searchbox input{width:100%;padding:12px 16px;border:1.5px solid var(--line);border-radius:10px;font-size:15px;background:#fff;color:var(--ink);outline:none;}
+.searchbox input:focus{border-color:var(--teal);}
+.searchbox .hint{font-size:12px;color:#888780;margin-top:8px;}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 6px;}
+.tabs button{border:1.5px solid var(--line);background:#fff;border-radius:20px;padding:7px 16px;font-size:13.5px;color:var(--ink2);cursor:pointer;}
+.tabs button.on{background:var(--teal);border-color:var(--teal);color:#fff;font-weight:700;}
+.count{font-size:12.5px;color:#888780;margin:6px 2px 12px;}
+.qa{background:var(--paper);border:1px solid var(--line);border-radius:14px;margin-bottom:12px;overflow:hidden;}
+.qa summary{list-style:none;cursor:pointer;padding:15px 18px;display:flex;align-items:flex-start;gap:10px;}
+.qa summary::-webkit-details-marker{display:none;}
+.qa summary .no{flex:none;background:var(--teal);color:#fff;border-radius:8px;font-size:12px;padding:2px 9px;margin-top:2px;}
+.qa summary .qt{font-weight:700;font-size:15.5px;flex:1;}
+.qa[open] summary{background:#e7f0ec;}
+.qa .abody{padding:4px 18px 16px;border-top:1px dashed var(--line);font-size:14.5px;color:var(--ink2);}
+.qa .abody p{margin-top:10px;}
+.qa .src{margin-top:12px;font-size:12.5px;color:var(--amber);}
+.qa .src a{color:var(--teal);text-decoration:none;border-bottom:1px dotted var(--teal);}
+mark{background:#f6e3a8;padding:0 2px;border-radius:3px;}
+.sec-title{font-family:'Noto Serif SC',serif;font-size:19px;color:var(--ink);margin:30px 0 4px;}
+.sec-sub{font-size:13px;color:#888780;margin-bottom:14px;}
+.links{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.links a.card{display:block;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:13px 15px;text-decoration:none;color:var(--ink);}
+.links a.card b{font-size:14.5px;color:var(--teal);}
+.links a.card span{display:block;font-size:12.5px;color:#888780;margin-top:3px;}
+.cta{background:#13211c;border-radius:16px;padding:24px;text-align:center;margin-top:30px;}
+.cta .say{font-family:'Noto Serif SC',serif;font-size:16.5px;color:var(--paper);line-height:2;}
+.cta a.zs{display:inline-block;margin-top:12px;background:var(--amber);color:#fff;border-radius:22px;padding:9px 26px;font-size:14px;text-decoration:none;font-weight:700;}
+footer{text-align:center;margin-top:26px;font-size:12.5px;color:#888780;}
+.nores{display:none;background:var(--paper);border:1px dashed var(--line);border-radius:14px;padding:26px;text-align:center;color:#888780;}
+@media(max-width:600px){.links{grid-template-columns:1fr;}header h1{font-size:23px;}}
+</style>
+</head>
+<body>
+<header>
+  <div class="kicker">西红精算 · 长凳投资学番外</div>
+  <h1>长凳问答库</h1>
+  <div class="sub">24 篇文章里，大家最常问的 53 个问题 · 一问一答 · 大白话，不诱导、不说教</div>
+  <div class="tag">第一季认资产 · 第二季走现场 · 第三季修心法</div>
+</header>
+
+<div class="wrap">
+
+<div class="searchbox">
+  <input id="kw" type="search" placeholder="搜一个问题试试：定投、提前还贷、IRR、四道闸……" autocomplete="off">
+  <div class="hint">支持标题与答案全文检索；点击问题展开答案，答案末尾可跳回对应文章原文。</div>
+</div>
+
+<div class="tabs" id="tabs">
+  <button class="on" data-c="all">全部 53 问</button>
+  <button data-c="s1">第一季 · 认资产</button>
+  <button data-c="s2">第二季 · 走现场</button>
+  <button data-c="s3">第三季 · 修心法</button>
+</div>
+<div class="count" id="count"></div>
+<div class="nores" id="nores">没有找到匹配的问题——换个关键词，或者按分类翻一翻。</div>
+<div id="list"></div>
+
+<div class="sec-title">🗺️ 学习资源导航 · 投资学去哪学</div>
+<div class="sec-sub">从科普到专业进阶的权威入口（均为公开站点，点开即用）。</div>
+<div class="links">
+  <a class="card" href="https://xihongactuary.github.io/investment-kb/" target="_blank" rel="noopener"><b>投资学 · 中国精算师 F8 知识库（自建）</b><span>六章节×考纲权重、9 台演算器、真题馆——从科普到专业的下一站</span></a>
+  <a class="card" href="https://www.icourse163.org/" target="_blank" rel="noopener"><b>中国大学 MOOC</b><span>搜「投资学」：北京大学、复旦大学等高校免费课程，系统学习首选</span></a>
+  <a class="card" href="https://www.sse.com.cn/investorhome/" target="_blank" rel="noopener"><b>上交所投资者服务</b><span>上交所投教园地：规则、风险警示、投教产品官方入口</span></a>
+  <a class="card" href="https://investor.szse.cn/" target="_blank" rel="noopener"><b>深交所投教园地</b><span>深交所投资者教育：入门课程、风险案例、互动答题</span></a>
+  <a class="card" href="https://www.csrc.gov.cn/" target="_blank" rel="noopener"><b>中国证监会官网</b><span>政策原文与投资者保护专栏；咨询投诉可拨 12386 热线</span></a>
+  <a class="card" href="https://www.jisilu.cn/" target="_blank" rel="noopener"><b>集思录</b><span>低风险投资社区：可转债、国债逆回购、封基折价等数据工具</span></a>
+  <a class="card" href="https://xueqiu.com/" target="_blank" rel="noopener"><b>雪球</b><span>投资者社区：看观点可以，抄作业之前先过「四道闸」（第 19 篇）</span></a>
+  <a class="card" href="https://www.12381.cn/" target="_blank" rel="noopener"><b>国家反诈中心</b><span>虚假投资理财占被骗资金四成——防骗知识、APP 下载与举报入口</span></a>
+</div>
+
+<div class="cta">
+  <div class="say">「懂得了那么多道理，<br>却依然过不好这一生——缺的从来不是答案，是坐下来的那会儿工夫。」</div>
+  <a class="zs" href="https://t.zsxq.com/Bs0tQ" target="_blank" rel="noopener">加入知识星球 · 更新与答疑</a>
+</div>
+
+<footer>
+  西红精算 · 用数据讲保险 · 用真心做科普<br>
+  精算师视角，让风险可度量，让投资可安心<br>
+  <span style="font-size:11.5px;color:#bbb5a5;">本站只讲逻辑与方法，不构成任何投资建议；答案为文章摘要，细节以对应原文为准。市场有风险，决策需谨慎。</span>
+</footer>
+
+</div>
+
+<script>
+/* ============ 数据：53 问 ============ */
+/* [分类, 问题, 答案(HTML), 出处篇号, 篇名] */
+var QA = [
+/* ---- 第一季 · 认资产 ---- */
+["s1","手里的钱，到底该怎么分家？","按「安全、收益、流动性」三个维度先把钱分成三家：短期要用的钱（活期、货币基金）、中期要用的钱（定存、国债）、长期不用的钱（基金、股票等）。钓不同的鱼，用不同的竿——别人家的鱼竿，再好也别直接套用。","1","钓鱼篇"],
+["s1","什么是久期匹配？","久期听着吓人，其实朴素：钱的「用钱时点」和资产的「回钱时点」要对得上。三年后要交的首付，别买十年期产品；三十年不用的养老金，别趴在活期里。期限错配，是家庭理财最常见的事故源。","1","钓鱼篇"],
+["s1","金价涨跌背后，那只看不见的手是什么？","是实际利率（名义利率减通胀）。实际利率升高，持有黄金（不生息）的机会成本变大，金价承压；实际利率走低甚至为负，黄金的「不生息」就不吃亏，金价得到支撑。看金价先看实际利率，再看央行购金与避险情绪。","2","黄金篇"],
+["s1","实物金条和黄金基金，差在哪？","实物金有加工费、保管成本、买卖价差，适合「压箱底」的确定感；黄金基金（ETF、联接基金）费率低、流动性好，适合定投和配置。两者的金价敞口一致，差的是成本、便利和心态——按用途选，不是按贵贱选。","2","黄金篇"],
+["s1","白银为什么涨起来猛、跌起来更疯？","两个原因：市场比黄金小得多，资金进出容易把价格推大；白银一半是贵金属、一半是工业品，需求随经济周期放大波动。用波动率的语言说：同样的事件，白银的价格反应被成倍放大——仓位要比黄金更轻。","3","白银篇"],
+["s1","买债券，到底赚的是什么钱？","两笔：①持有期间的利息（票息），这是本金；②价格变动（利率下行时债券价格上涨，可以赚价差）。记住债券不是「存款」：卖给别人的那一刻，价格随行就市——这就是债券会「亏钱」的唯一来源。","4","债券篇"],
+["s1","利率涨了，我的债券为什么跌？","跷跷板：市场利率上升，新发的债券利息更高，你手里那张老的低息债券就不值钱了，价格下跌；利率下行则相反。期限越长，这个跷跷板越敏感——这就是久期。","4","债券篇"],
+["s1","什么是市值？大盘股、小盘股怎么分？","市值＝股价×总股本，即「整个公司现在值多少钱」。A股习惯上：几千亿以上称大盘（沪深300成分多为大盘），几十亿到一两百亿称小盘。大盘稳、小盘弹性大但风险高——不是好坏之分，是属性之分。","5","股票篇（上）"],
+["s1","A股、港股、美股，都在哪交易？","上交所、深交所主板与创业板、北交所在境内；港股经港股通；美股经QDII基金最便捷。每个市场的交易时间、涨跌幅规则、货币都不同——出海前先读说明书（第8篇专讲）。","5","股票篇（上）"],
+["s1","涨跌停板是保护我还是困住我？","都是。它是闸门：大跌时限制当天恐慌的深度，给你冷静的夜晚；但也可能把「想卖的」堵在门里，连续跌停时卖不出去。理解它的两面，就知道为什么不能把流动性希望寄托在闸门上。","6","股票篇（下）"],
+["s1","「ALL IN」到底危险在哪？","一次全押，等于把「活下来的资格」交给了一次运气。市场长期为正，但你必须留在桌上才能拿到——全押意味着任何一次黑天鹅都能让你出局，而出局是不可逆的（收益率可以亏了再赚，本金×0永远是0）。","6","股票篇（下）"],
+["s1","左侧交易和右侧交易，哪种适合普通人？","左侧=下跌中买入（逆势，买得便宜但要忍继续跌）；右侧=企稳后买入（顺势，买得贵些但确定性高）。普通人的折中是定投——不猜顶底，按月执行，把「判断」的压力换成「纪律」。","6","股票篇（下）"],
+["s1","基金有哪些类型？怎么初步选？","按对象：货币、债券、混合、股票、指数（ETF）；按操作：主动（经理选股）与被动（复制指数）。初学者路径：先用宽基指数打底，再考虑主动基金——费率、规模、经理任期是三个硬指标。","7","基金篇"],
+["s1","为什么强烈建议定投？","三个理由：①不必猜顶底，摊平成本；②强制储蓄，把纪律外包给规则；③跌市里定投反而累积到更便宜的份额——微笑曲线的左半边是礼物不是灾难。定投的前提是标的长期能回来（宽基指数符合）。","7","基金篇"],
+["s1","白酒、黄金、医疗……赛道为什么会轮转？","行业有周期：景气→资金涌入→估值抬高→业绩跟不上→资金撤出，轮到下一个景气行业。追着刚涨完的赛道进，常买在轮转的交接棒上。普通人应对：别赌单一赛道，用宽基+均衡覆盖。","7","基金篇"],
+["s1","「过往业绩不代表未来」——只是免责套话吗？","是统计学：历史收益含大量运气与特定环境成分，样本外的持续性很差。机构研究发现，排名前列的基金次年继续领先的比率并不高。所以选基金看的是费率、规模、纪律这些「可持续因素」，不是去年的冠军榜。","7","基金篇"],
+["s1","QDII是什么？普通人怎么投美股？","QDII=合格境内机构投资者，即「替你出海的基金」。买QDII指数基金（如跟踪纳斯达克100）是最省事的路径：不用境外账户，人民币申赎。代价：额度紧张时限购、申赎到账慢、含汇率敞口。","8","出海篇"],
+["s1","指数涨了，我的基金没赚——为什么？","两个常见的漏：①汇率——QDII以美元计价资产，人民币升值会吃掉一部分涨幅；②溢价——场内价格高于基金净值时买入，溢价回落直接亏。出海的钱要给汇率留位置，且优先在低溢价时买。","8","出海篇"],
+["s1","买股票，还是买基金？怎么选？","三个问题自测：有时间研究吗？有信息优势吗？跌三成睡得着吗？三个都「是」可以考虑自选股票；否则宽基指数基金更合适——基金赚的是分散和纪律的钱。第9篇有一张完整决策树。","9","抉择篇"],
+["s1","为什么「基金赚钱、基民不赚钱」？","行为差距：申购集中在高点，赎回集中在低点，持有期短，来回切换交费率。基金长期年化并不差，差在进出时点由情绪决定。对策：定投+长期持有+把操作规则写在情绪之前。","9","抉择篇"],
+["s1","跌50%，要涨多少才回本？","100%。跌50%后净值只剩0.5，回到1.0需要翻倍——回本数学是不对称的：跌得越深，回本所需的涨幅指数级放大。这张阶梯表（-10%→+11%，-30%→+43%，-50%→+100%）值得贴在交易软件旁边。","10","数学篇"],
+["s1","「平均收益」为什么会骗人？","算术平均和几何平均不是一回事：+50% 后跟 -50%，平均0%，实际亏25%。复利世界里，真正决定财富的是几何平均（年化），而波动越大，几何平均越低于算术平均——这叫波动拖累。","10","数学篇"],
+["s1","「100减年龄」的配置法怎么用？","一个粗略刻度：股票类资产比例≈100−年龄。25岁约75/25，45岁约55/45，65岁约35/65。它不是公式是路标——真正的比例要叠加你的收入稳定性、风险承受力和用钱时点来修。","11","配置篇"],
+["s1","什么是再平衡？多久做一次？","组合里涨多的卖一点、跌多的补一点，把比例拉回目标——本质是纪律化的「高抛低吸」。一年检视一次即可，偏离目标超过5个百分点才动手。它赚的不是眼光，是纪律的钱。","11","配置篇"],
+["s1","保险在家庭资产配置里算什么？","算「篱笆田」：它不是让钱生钱的资产，是保住现金流不被意外抽干的工具。先保障（医疗、重疾、定寿、意外）后理财；保险的收益属性交给第20篇的IRR去验货。","11","配置篇"],
+["s1","复利到底有多厉害？","10万本金、年化6%，30年变约57万；年化10%，约174万。三条曲线的差异不在本金，在年化和年数。复利前十年趴在地上——它奖励的从来不是聪明，是「不下桌」。","12","收官篇"],
+/* ---- 第二季 · 走现场 ---- */
+["s2","「三只罐子」是什么？","活钱罐（3～6个月生活费，货币基金）、稳钱罐（1～5年要用的钱，定存/国债）、长钱罐（5年以上，指数基金/年金）。先分罐，再谈收益——把应急的钱拿去博收益，是理财事故的头号来源。","13","存款篇"],
+["s2","2026年的存款利率阶梯长什么样？","活期0.05%上下、三年定存约1.25%、五年大额存单约1.60%、储蓄国债1.63%～1.70%、10年期国债约1.8%。无风险收益全面进入「1时代」——到期转存前，先看看这条阶梯再决定钱往哪放。","13","存款篇"],
+["s2","大额存单值得抢吗？","看三关：额度（是否真有）、利率（比国债高多少）、流动性（能否转让）。五年不用且追求确定性的钱，它是好工具；但为抢它把活钱锁死，就本末倒置了。","13","存款篇"],
+["s2","存款保险50万，家庭存款怎么拆？","存款保险对单家银行单人本息合计赔付上限50万。超出的部分分散到两三家银行即可，不必恐慌大搬家；同时记住理财、基金不在存款保险覆盖范围内。","13","存款篇"],
+["s2","R2理财也会亏钱吗？","会。净值化时代「保本理财」已成历史，R2（中低风险）也会因债市波动出现回撤——2026年初理财破净一度超1700只。看产品别只看风险等级，要看底层资产和过往最大回撤。","13","存款篇"],
+["s2","提前还贷，算不算一种好的「投资」？","算一笔对照账：还贷等于买了一份「无风险、免税、收益率=房贷利率」的资产。房贷利率高于4%，还贷的确定性收益很难被取代；低于3%，钱留在手里可能有更好的去处。","14","提前还贷篇"],
+["s2","提前还贷，缩期限还是减月供？","同样的20万：缩期限省息约34万，减月供（4774→3819元）省息约14万。想省总利息选缩期限，想缓解月现金流选减月供——没有标准答案，看你缺的是利息还是喘息。","14","提前还贷篇"],
+["s2","哪些人不要急着还房贷？","三类：公积金贷款（利率低，先留着）、手里没有应急金的家庭（先补安全垫）、有稳定更高收益去向的人（机会成本）。以及别用短期的钱还长期的债——期限错配是家庭大忌。","14","提前还贷篇"],
+["s2","个人养老金每年1.2万，抵税到底省多少？","按边际税率：3%档省360元，10%省1200元，20%省2400元，45%省5400元；领取时补3%税。收入越高越划算；税率低于3%的人群意义有限。它是养老第三支柱的一块砖，不是收益产品。","15","养老金篇"],
+["s2","退休要备多少钱？","按替代率粗算：社保只覆盖退休前收入的约四成，体面养老要靠自己补——一对夫妻从35岁开始规划，缺口普遍在百万级（第15篇按120万演算）。早十年开始，每年要存的钱少三成。","15","养老金篇"],
+["s2","收益率多高，我要开始警惕？","一把标尺：超过6%就要打问号，超过8%很危险，承诺10%以上要准备损失全部本金——这是银保监郭主席那句名言的刻度版。所有「稳赚高息」都在向你借两样东西：你的本金和你的运气。","16","防骗篇"],
+["s2","万一被骗了，黄金四步是什么？","①立即拨打110并保留转账记录、聊天记录；②联系银行申请紧急止付；③拨打96110反诈专线；④别信「追回被骗资金」的二次诈骗。速度是唯一的解药，羞耻感是骗子最后的同盟。","16","防骗篇"],
+["s2","AI换脸诈骗怎么防？","两句口诀：凡涉及转账，回拨对方常用号码核实（视频里那张脸不作数）；和家人约定只有彼此知道的「暗号」。2026年AI合成诈骗案发量激增，单笔最高被骗430万——技术不设防，暗号来设防。","16","防骗篇"],
+["s2","看房子该戴哪几副眼镜？","三副：自住=带杠杆的消费（看重住得好不好）；收租=资产（只看租金回报率）；筹码=博傻（指望下一位买家）。眼镜戴错，账就算错——同一套房子，三种完全不同的决策逻辑。","17","房子篇"],
+["s2","租金回报率多少，房子才算「值得收租」？","2026年参考：北京约1.6%、上海约2.0%、广州约1.9%、深圳约1.4%（全市口径），远低于东京3.2%、伦敦3.6%、纽约5.5%和全球397城中位数5.0%。租金回报率是房子的「市盈率」——低于无风险利率，说明价格里装的主要是预期。","17","房子篇"],
+["s2","自住房的三道闸是什么？","月供不超过家庭月收入三成、确定住满五年以上、房贷利率过了决策线再谈投资属性。三道闸全过，房子才从「最大的负担」变成「最踏实的消费」。","17","房子篇"],
+["s2","现在还能把买房当投资吗？","分化时代的答案是：长期看人口、中期看土地供给、短期看金融条件。核心城市核心地段与人口流出城市，是两个完全不同的故事。买房前先算租金回报率，别只算「以后总有人接」。","17","房子篇"],
+["s2","ETF火成这样，我该跟着买吗？","分两半看：宽基ETF做核心配置，是工具的价值（低费率、透明）；追热门主题ETF（AI、机器人……），是把好工具用成追涨的矛。工具是工具，机会是机会——第18篇原话：便宜的是工具，不是机会。","18","趋势篇"],
+["s2","低利率时代，普通人最该守住什么？","三样：现金流的根（技能、应急金、基础保障）、资产负债表的稳（月供别顶满、单家银行别超线）、心态上的慢（复利前十年趴在地上，比谁不下桌）。","18","趋势篇"],
+/* ---- 第三季 · 修心法 ---- */
+["s3","怎么判断一笔操作是投资还是投机？","四道闸：①用的是三五年不用的闲钱吗②它有现金流吗（利息/分红/租金/盈利）③想好怎么退出了吗④亏光影响生活吗。全「是」是投资的田；任何一问答「否」，先亮投机黄灯。","19","案例篇"],
+["s3","成功的投资和失败的投机，差别到底在哪？","六个著名案例对照：巴菲特可乐、指数十年赌局、耶鲁基金是赢家——买的是资产的生产力；乐视、LTCM、e租宝是输家——没现金流、上杠杆、听故事。成功的路各不相同，失败的坑高度一致。","19","案例篇"],
+["s3","为什么「赚过钱的方法」最危险？（刻舟求剑）","路径依赖：成功会留下刻痕，让你不再检验前提。十年前的地图——存款4%、房价普涨、理财保本——标不出今天的水深。对策：给每条规矩标注「它建立在哪一年的前提上」，前提变了就重新签字。","21","刻舟求剑篇"],
+["s3","市场里的「拔苗」，你中过几式？","追涨杀跌=把苗拔出来看根（每追一次交一次费用+情绪税）；上杠杆=施肥过量（一次倒伏就起不来）；频繁换仓=不停移栽（伤根）。对应的「等的三式」：定投、再平衡、拿住。","22","揠苗助长篇"],
+["s3","「别人恐惧我贪婪」什么时候才成立？","三个前提凑齐才轮到贪婪：资产本身好（有现金流）、价格因情绪而非基本面下跌、你的钱是拿得住的长钱。垃圾跌了不叫便宜，叫价格回归价值——逆行的前提是你知道路。","23","羊群与窄门篇"],
+["s3","怎么区分「独立思考」和「固执」？","一个测试：你能不能说出「如果什么情况出现，我就错了」？说得出来，是思考，还能配上止损；说不出来，是固执——只有情绪和「我觉得」。敢认错，是逆行者的保险丝。","23","羊群与窄门篇"],
+["s3","攀比为什么让投资变形？要交哪几笔税？","三笔：嫉妒税（别人赚了你没赚，最容易在高位替别人补仓）、换田税（追进别人正在收成的田，常是高点）、变形税（仓位超出睡得着的水平，好组合也拿不住）。你看到邻家收成时，看不到他田里遭过的灾。","24","种好自家田篇"],
+["s3","「种好自家田」的三问是什么？","①这块地是谁的——目标对准自己的人生阶段；②这季庄稼多久收——三年内要用的钱不进果树；③施多少肥睡得着——仓位上限=夜里不惊的刻度。合适比优秀重要：优秀的组合拿不住，等于没有。","24","种好自家田篇"]
+];
+
+/* ============ 渲染与检索 ============ */
+var listEl = document.getElementById('list');
+var countEl = document.getElementById('count');
+var noresEl = document.getElementById('nores');
+var curCat = 'all';
+var s1n=0,s2n=0,s3n=0;
+QA.forEach(function(d){ if(d[0]==='s1')s1n++; else if(d[0]==='s2')s2n++; else s3n++; });
+var noMap = {};
+QA.forEach(function(d,i){ noMap[i] = i+1; });
+
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function bigrams(s){var r=[],t=s.toLowerCase();for(var i=0;i<t.length-1;i++){var a=t.charCodeAt(i),b=t.charCodeAt(i+1);if(a>127||b>127||(a>47&&a<58)||(b>47&&b<58)||(a>96&&a<123)||(b>96&&b<123))r.push(t.substr(i,2));}return r;}
+function score(q,bg){var s=0;for(var i=0;i<q.length;i++){if(bg.indexOf(q[i])>-1)s+=1;}return s/(q.length||1);}
+
+function render(){
+  var kw = document.getElementById('kw').value.trim();
+  var bg = kw? bigrams(kw):[];
+  var html='', shown=0;
+  QA.forEach(function(d,i){
+    if(curCat!=='all' && d[0]!==curCat) return;
+    if(kw){
+      var text=(d[1]+d[2].replace(/<[^>]+>/g,'')).toLowerCase();
+      if(text.indexOf(kw.toLowerCase())===-1 && score(bg,bigrams(text))<0.35) return;
+    }
+    shown++;
+    var q = esc(d[1]);
+    html += '<details class="qa"><summary><span class="no">'+noMap[i]+'</span><span class="qt">'+q+'</span></summary>'
+          + '<div class="abody"><p>'+d[2]+'</p>'
+          + '<div class="src">出自：第 '+d[3]+' 篇 · 《'+d[4]+'》 <a href="../'+String(d[3]).padStart(2,'0')+'-'+d[4].replace('（','').replace('）','')+'.html" target="_blank">读原文 →</a></div>'
+          + '</div></details>';
+  });
+  listEl.innerHTML = html;
+  noresEl.style.display = shown? 'none':'block';
+  var catName = curCat==='all'?'全部':curCat==='s1'?'第一季':curCat==='s2'?'第二季':'第三季';
+  countEl.textContent = '当前显示 '+shown+' 问 · 检索方式：标题优先 + 全文模糊匹配';
+}
+document.getElementById('kw').addEventListener('input', render);
+document.getElementById('tabs').addEventListener('click', function(e){
+  if(e.target.tagName!=='BUTTON') return;
+  document.querySelectorAll('#tabs button').forEach(function(b){b.classList.toggle('on', b===e.target);});
+  curCat = e.target.getAttribute('data-c');
+  render();
+});
+render();
+</script>
+</body>
+</html>
